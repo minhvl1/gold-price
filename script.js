@@ -108,7 +108,7 @@ const PriceService = {
             };
 
             // 1. Gold 999.9 (Prefer TRANG SỨC items if available)
-            const gold999 = findItem((name, h) => h === '999.9' || name.includes('TRANG SỨC'));
+            const gold999 = findItem((name, h) => (h === '999.9' && !name.includes('SJC')) || name.includes('TRANG SỨC'));
             console.log('BTMC Gold 999.9:', gold999);
 
             // 2. SJC
@@ -123,7 +123,7 @@ const PriceService = {
 
                 const name = item[`@n_${i}`];
                 const buyStr = item[`@pb_${i}`];
-                const sellStr = item[`@@ps_${i}`];
+                const sellStr = item[`@ps_${i}`];
 
                 if (name && (name.includes('BẠC') || name.includes('BAC')) && buyStr && sellStr) {
                     const buy = parseFloat(buyStr);
