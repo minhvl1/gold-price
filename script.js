@@ -83,20 +83,24 @@ const PriceService = {
 
             const data = result.DataList.Data;
 
-            // Helper to extract BTMC weird structure
+            // 1. & 2. Find Gold items using a more robust search
             const findItem = (predicate) => {
                 for (const item of data) {
-                    for (let i = 1; i <= 100; i++) {
-                        const name = item[`@n_${i}`];
-                        const buy = item[`@pb_${i}`];
-                        const sell = item[`@ps_${i}`];
-                        const h = item[`@h_${i}`];
+                    const i = item['@row'];
+                    if (!i) continue;
 
-                        // Ensure we have valid values before predicate check
-                        if (name && buy && sell) {
-                            if (predicate(name, h, buy, sell)) {
-                                return { name, buy, sell };
-                            }
+                    const name = item[`@n_${i}`];
+                    const buyStr = item[`@pb_${i}`];
+                    const sellStr = item[`@ps_${i}`];
+                    const h = item[`@h_${i}`] || '';
+
+                    if (name && buyStr && sellStr) {
+                        if (predicate(name, h)) {
+                            // console.log(`Found item: ${name} (Row ${i})`, { buy: buyStr, sell: sellStr });
+                            return {
+                                buy: parseFloat(buyStr),
+                                sell: parseFloat(sellStr)
+                            };
                         }
                     }
                 }
@@ -105,37 +109,40 @@ const PriceService = {
 
             // 1. Gold 999.9 (Prefer TRANG SỨC items if available)
             const gold999 = findItem((name, h) => h === '999.9' || name.includes('TRANG SỨC'));
+            console.log('BTMC Gold 999.9:', gold999);
 
             // 2. SJC
             const sjc = findItem((name) => name.includes('SJC'));
+            console.log('BTMC SJC:', sjc);
 
             // 3. Silver
             let silver = null;
             for (const item of data) {
-                for (let i = 1; i <= 100; i++) {
-                    const name = item[`@n_${i}`];
-                    const buyStr = item[`@pb_${i}`];
-                    const sellStr = item[`@ps_${i}`];
+                const i = item['@row'];
+                if (!i) continue;
 
-                    if (name && (name.includes('BẠC') || name.includes('BAC')) && buyStr && sellStr) {
-                        const buy = parseFloat(buyStr);
-                        const sell = parseFloat(sellStr);
-                        let factor = 1;
+                const name = item[`@n_${i}`];
+                const buyStr = item[`@pb_${i}`];
+                const sellStr = item[`@@ps_${i}`];
 
-                        if (name.includes('1 KG') || name.includes('1000 GRAM')) factor = 0.00375;
-                        else if (name.includes('10 LƯỢNG')) factor = 0.01;
-                        else if (name.includes('1 LƯỢNG')) factor = 0.1;
+                if (name && (name.includes('BẠC') || name.includes('BAC')) && buyStr && sellStr) {
+                    const buy = parseFloat(buyStr);
+                    const sell = parseFloat(sellStr);
+                    let factor = 1;
 
-                        silver = { buy: buy * factor, sell: sell * factor };
-                        break;
-                    }
+                    if (name.includes('1 KG') || name.includes('1000 GRAM')) factor = 0.00375;
+                    else if (name.includes('10 LƯỢNG')) factor = 0.01;
+                    else if (name.includes('1 LƯỢNG')) factor = 0.1;
+
+                    silver = { buy: buy * factor, sell: sell * factor };
+                    // console.log('BTMC Silver:', silver);
+                    break;
                 }
-                if (silver) break;
             }
 
             return {
-                gold: gold999 ? { buy: gold999.buy, sell: gold999.sell } : null,
-                sjc: sjc ? { buy: sjc.buy, sell: sjc.sell } : null,
+                gold: gold999,
+                sjc: sjc,
                 silver: silver
             };
 
