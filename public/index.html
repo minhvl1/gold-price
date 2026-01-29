@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giá Vàng Hôm Nay - Cập Nhật Liên Tục</title>
+  <meta name="description"
+    content="Theo dõi giá vàng và bạc từ Phú Quý và Bảo Tín Minh Châu. Cập nhật liên tục mỗi 30 giây với biểu đồ trực quan.">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1><span class="gold-text">💰</span> Giá Vàng Hôm Nay</h1>
+      <div class="last-update">
+        <span id="lastUpdate">Đang tải...</span>
+      </div>
+    </header>
+
+    <!-- Chart Section -->
+    <section class="chart-section">
+      <div class="chart-header">
+        <h2 class="chart-title">Biểu Đồ Giá Vàng</h2>
+
+        <div class="chart-toolbar">
+          <!-- Source Filter -->
+          <div class="chart-controls source-controls">
+            <button class="chart-btn active" data-source="pq">Phú Quý</button>
+            <button class="chart-btn" data-source="btmc">BTMC</button>
+          </div>
+
+          <!-- Time Filter -->
+          <div class="chart-controls time-controls">
+            <button class="chart-btn active" data-hours="24">24h</button>
+            <button class="chart-btn" data-hours="12">12h</button>
+            <button class="chart-btn" data-hours="6">6h</button>
+          </div>
+        </div>
+      </div>
+      <div class="chart-container">
+        <canvas id="priceChart"></canvas>
+      </div>
+    </section>
+
+    <!-- Phú Quý Section -->
+    <section class="price-section" id="phu-quy-section">
+      <div class="section-header">
+        <h2>Phú Quý</h2>
+        <span class="source-badge">PQ</span>
+      </div>
+
+      <div class="price-cards">
+        <div class="price-card">
+          <div class="card-header">
+            <h3>Vàng 999.9</h3>
+            <span class="badge">PQ</span>
+          </div>
+          <div class="price-content">
+            <div class="price-row">
+              <span class="label">Mua vào</span>
+              <span class="price buy" id="pq-gold-buy">--</span>
+            </div>
+            <div class="price-row">
+              <span class="label">Bán ra</span>
+              <span class="price sell" id="pq-gold-sell">--</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="price-card">
+          <div class="card-header">
+            <h3>Vàng SJC</h3>
+            <span class="badge sjc">SJC</span>
+          </div>
+          <div class="price-content">
+            <div class="price-row">
+              <span class="label">Mua vào</span>
+              <span class="price buy" id="pq-sjc-buy">--</span>
+            </div>
+            <div class="price-row">
+              <span class="label">Bán ra</span>
+              <span class="price sell" id="pq-sjc-sell">--</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="price-card silver">
+          <div class="card-header">
+            <h3>Bạc</h3>
+            <span class="badge silver-badge">Ag</span>
+          </div>
+          <div class="price-content">
+            <div class="price-row">
+              <span class="label">Mua vào</span>
+              <span class="price buy" id="pq-silver-buy">--</span>
+            </div>
+            <div class="price-row">
+              <span class="label">Bán ra</span>
+              <span class="price sell" id="pq-silver-sell">--</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Minh Châu Section -->
+    <section class="price-section" id="btmc-section">
+      <div class="section-header">
+        <h2>Bảo Tín Minh Châu</h2>
+        <span class="source-badge">BTMC</span>
+      </div>
+
+      <div class="price-cards">
+        <div class="price-card">
+          <div class="card-header">
+            <h3>Vàng 999.9</h3>
+            <span class="badge">BTMC</span>
+          </div>
+          <div class="price-content">
+            <div class="price-row">
+              <span class="label">Mua vào</span>
+              <span class="price buy" id="btmc-gold-buy">--</span>
+            </div>
+            <div class="price-row">
+              <span class="label">Bán ra</span>
+              <span class="price sell" id="btmc-gold-sell">--</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="price-card">
+          <div class="card-header">
+            <h3>Vàng SJC</h3>
+            <span class="badge sjc">SJC</span>
+          </div>
+          <div class="price-content">
+            <div class="price-row">
+              <span class="label">Mua vào</span>
+              <span class="price buy" id="btmc-sjc-buy">--</span>
+            </div>
+            <div class="price-row">
+              <span class="label">Bán ra</span>
+              <span class="price sell" id="btmc-sjc-sell">--</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="price-card silver">
+          <div class="card-header">
+            <h3>Bạc</h3>
+            <span class="badge silver-badge">Ag</span>
+          </div>
+          <div class="price-content">
+            <div class="price-row">
+              <span class="label">Mua vào</span>
+              <span class="price buy" id="btmc-silver-buy">--</span>
+            </div>
+            <div class="price-row">
+              <span class="label">Bán ra</span>
+              <span class="price sell" id="btmc-silver-sell">--</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Đơn vị: VNĐ/Chỉ (1 chỉ = 3.75 gram)</p>
+      <p class="note">Giá chỉ mang tính chất tham khảo. Vui lòng liên hệ trực tiếp với cửa hàng để biết giá chính xác.
+      </p>
+    </footer>
+  </div>
+
+  <!-- Mock data for local development (comment out for production) -->
+  <!-- <script src="mock-data.js"></script> -->
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+  <script src="chartConfig.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

@@ -3,3 +3,23 @@ server.log
 *.pyc
 __pycache__/
 .DS_Store
+
+# Firebase
+.firebase/
+.firebaserc
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
+# Node.js
+node_modules/
+functions/node_modules/
+npm-debug.log
+yarn-error.log
+
+# Environment
+functions/.env
+.env.local
+
+# Legacy files (Python server)
+btmc_data.json
