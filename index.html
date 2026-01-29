@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giá Vàng & Bạc Hôm Nay</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>💰 Giá Vàng & Bạc Hôm Nay</h1>
+      <p class="subtitle">Cập nhật liên tục từ Bảo Tín Minh Châu & Bảo Tín Phú Quý</p>
+      <div class="last-update">
+        <span id="lastUpdate">Đang tải...</span>
+      </div>
+    </header>
+
+    <div class="main-content">
+      <!-- Phú Quý Section -->
+      <section class="price-section">
+        <div class="section-header phu-quy">
+          <h2>🏆 Phú Quý</h2>
+        </div>
+
+        <div class="price-cards">
+          <div class="price-card gold">
+            <div class="card-header">
+              <h3>Vàng 999.9</h3>
+              <span class="badge">PQ</span>
+            </div>
+            <div class="price-content">
+              <div class="price-row">
+                <span class="label">Mua vào</span>
+                <span class="price buy" id="pq-gold-buy">--</span>
+              </div>
+              <div class="price-row">
+                <span class="label">Bán ra</span>
+                <span class="price sell" id="pq-gold-sell">--</span>
+              </div>
+              <div class="change" id="pq-gold-change">--</div>
+            </div>
+          </div>
+
+          <div class="price-card gold">
+            <div class="card-header">
+              <h3>Vàng SJC</h3>
+              <span class="badge sjc">SJC</span>
+            </div>
+            <div class="price-content">
+              <div class="price-row">
+                <span class="label">Mua vào</span>
+                <span class="price buy" id="pq-sjc-buy">--</span>
+              </div>
+              <div class="price-row">
+                <span class="label">Bán ra</span>
+                <span class="price sell" id="pq-sjc-sell">--</span>
+              </div>
+              <div class="change" id="pq-sjc-change">--</div>
+            </div>
+          </div>
+
+          <div class="price-card silver">
+            <div class="card-header">
+              <h3>Bạc</h3>
+              <span class="badge silver-badge">Ag</span>
+            </div>
+            <div class="price-content">
+              <div class="price-row">
+                <span class="label">Mua vào</span>
+                <span class="price buy" id="pq-silver-buy">--</span>
+              </div>
+              <div class="price-row">
+                <span class="label">Bán ra</span>
+                <span class="price sell" id="pq-silver-sell">--</span>
+              </div>
+              <div class="change" id="pq-silver-change">--</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Minh Châu Section -->
+      <section class="price-section">
+        <div class="section-header minh-chau">
+          <h2>💎 Bảo Tín Minh Châu</h2>
+        </div>
+
+        <div class="price-cards">
+          <div class="price-card gold">
+            <div class="card-header">
+              <h3>Vàng 999.9</h3>
+              <span class="badge">BTMC</span>
+            </div>
+            <div class="price-content">
+              <div class="price-row">
+                <span class="label">Mua vào</span>
+                <span class="price buy" id="btmc-gold-buy">--</span>
+              </div>
+              <div class="price-row">
+                <span class="label">Bán ra</span>
+                <span class="price sell" id="btmc-gold-sell">--</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="price-card gold">
+            <div class="card-header">
+              <h3>Vàng SJC</h3>
+              <span class="badge sjc">SJC</span>
+            </div>
+            <div class="price-content">
+              <div class="price-row">
+                <span class="label">Mua vào</span>
+                <span class="price buy" id="btmc-sjc-buy">--</span>
+              </div>
+              <div class="price-row">
+                <span class="label">Bán ra</span>
+                <span class="price sell" id="btmc-sjc-sell">--</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="price-card silver">
+            <div class="card-header">
+              <h3>Bạc</h3>
+              <span class="badge silver-badge">Ag</span>
+            </div>
+            <div class="price-content">
+              <div class="price-row">
+                <span class="label">Mua vào</span>
+                <span class="price buy" id="btmc-silver-buy">--</span>
+              </div>
+              <div class="price-row">
+                <span class="label">Bán ra</span>
+                <span class="price sell" id="btmc-silver-sell">--</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <p>Đơn vị: VNĐ/Chỉ (1 chỉ = 3.75 gram)</p>
+      <p class="note">Giá chỉ mang tính chất tham khảo. Vui lòng liên hệ trực tiếp với cửa hàng để biết giá chính xác.
+      </p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
